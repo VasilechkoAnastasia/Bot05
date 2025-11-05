@@ -3,7 +3,7 @@ import time
 import requests
 import random
 
-bot_key = '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'
+bot_key = '8204532312:AAHh1EVv-LuOK6AeGUoFT7xFyHY0aRfFZ0s'
 
 url = f"https://api.telegram.org/bot{bot_key}/"  # don't forget to change the token!
 
@@ -68,3 +68,5 @@ def main():
 # print(__name__)
 if __name__ == '__main__':
     main()
+# print(__name__)
+# print('HELLO') #При подключении файла как бибилиотеки import bot, в другой .py файл проекта, этот код будет запускатся при включении того, другого файла

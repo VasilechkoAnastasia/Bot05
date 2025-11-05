@@ -3,7 +3,7 @@ import time
 import requests
 import random
 
-bot_key = '8204532312:AAHh1EVv-LuOK6AeGUoFT7xFyHY0aRfFZ0s'
+bot_key = ''
 
 url = f"https://api.telegram.org/bot{bot_key}/"  # don't forget to change the token!
 
@@ -46,7 +46,7 @@ def main():
                 if get_message_text(update).lower() == 'hi' or get_message_text(
                         update).lower() == 'hello' or get_message_text(update).lower() == 'hey':
                     send_message(get_chat_id(update), 'Greetings! Type "Dice" to roll the dice!')
-                elif get_message_text(update).lower() == 'qa24':
+                elif get_message_text(update).lower() == 'csc31':
                     send_message(get_chat_id(update), 'Python')
                 elif get_message_text(update).lower() == 'gin':
                     send_message(get_chat_id(update), 'Finish')
@@ -68,5 +68,3 @@ def main():
 # print(__name__)
 if __name__ == '__main__':
     main()
-# print(__name__)
-# print('HELLO') #При подключении файла как бибилиотеки import bot, в другой .py файл проекта, этот код будет запускатся при включении того, другого файла

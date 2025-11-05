@@ -3,7 +3,7 @@ import time
 import requests
 import random
 
-bot_key = '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'
+bot_key = ''
 
 url = f"https://api.telegram.org/bot{bot_key}/"  # don't forget to change the token!
 

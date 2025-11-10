@@ -10,7 +10,7 @@ def test_calculate_multiplication():
     assert calculate_expression('2 * 5') == '10'
 
 def test_calculate_divide():
-    assert calculate_expression('10 / 5') == '2'
+    assert calculate_expression('10 // 5') == '2'
 
 def test_calculate_addition2():
     assert calculate_expression('1 + 3') == '4'
@@ -22,7 +22,7 @@ def test_calculate_multiplication2():
     assert calculate_expression('100 * 2') == '200'
 
 def test_calculate_divide2():
-    assert calculate_expression('200 / 100') == '2'
+    assert calculate_expression('200 // 100') == '2'
 
 def test_smoke():
     assert True

@@ -2,6 +2,7 @@ import time
 
 import requests
 import random
+from weather import get_weather
 
 bot_key = '7826159001:AAGaeV7FXucTzjBSjnN5GAO-6IEM3Tea2R8'
 
@@ -53,13 +54,17 @@ def main():
                     break
                 elif get_message_text(update).lower() == 'python':
                     send_message(get_chat_id(update), 'version 3.10')
+                elif 'weather' in get_message_text(update).lower():
+                    city = get_message_text(update).lower().replace('weather', '')
+                    weather = get_weather(city)
+                    send_message(get_chat_id(update), weather)
                 elif get_message_text(update).lower() == 'dice':
                     _1 = random.randint(1, 6)
                     _2 = random.randint(1, 6)
                     send_message(get_chat_id(update),
                                  'You have ' + str(_1) + ' and ' + str(_2) + '!\nYour result is ' + str(_1 + _2) + '!')
                 else:
-                    send_message(get_chat_id(update), 'Sorry, I don\'t understand you :(')
+                    send_message(get_chat_id(update), 'Sorry, I don\'t understand you ')
                 update_id += 1
     except KeyboardInterrupt:
         print('\nБот зупинено')

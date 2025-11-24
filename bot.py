@@ -2,7 +2,7 @@ import time
 
 import requests
 import random
-from weather import get_weather
+from commands.weather import get_weather
 
 bot_key = '7826159001:AAGaeV7FXucTzjBSjnN5GAO-6IEM3Tea2R8'
 

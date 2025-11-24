@@ -1,20 +1,23 @@
 import time
-
 import requests
 import random
+from commands.calculator import calculate_expression
 from commands.weather import get_weather
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 bot_key = '7826159001:AAGaeV7FXucTzjBSjnN5GAO-6IEM3Tea2R8'
-
+URL = os.getenv("URL")
 url = f"https://api.telegram.org/bot{bot_key}/"  # don't forget to change the token!
-
 
 def last_update(request):
     response = requests.get(request + 'getUpdates')
     # TODO: Uncomment just for local testing
     # print(response)
     response = response.json()
-    # print(response)
+    print(response)
     results = response['result']
     total_updates = len(results) - 1
     return results[total_updates]
@@ -41,7 +44,7 @@ def main():
         update_id = last_update(url)['update_id']
         while True:
             # pythonanywhere
-            time.sleep(3)
+            time.sleep(1)
             update = last_update(url)
             if update_id == update['update_id']:
                 if get_message_text(update).lower() == 'hi' or get_message_text(
@@ -54,8 +57,9 @@ def main():
                     break
                 elif get_message_text(update).lower() == 'python':
                     send_message(get_chat_id(update), 'version 3.10')
+                # from weather import get_weather
                 elif 'weather' in get_message_text(update).lower():
-                    city = get_message_text(update).lower().replace('weather', '')
+                    city = get_message_text(update).lower().replace('weather ', '')
                     weather = get_weather(city)
                     send_message(get_chat_id(update), weather)
                 elif get_message_text(update).lower() == 'dice':
@@ -64,14 +68,16 @@ def main():
                     send_message(get_chat_id(update),
                                  'You have ' + str(_1) + ' and ' + str(_2) + '!\nYour result is ' + str(_1 + _2) + '!')
                 else:
-                    send_message(get_chat_id(update), 'Sorry, I don\'t understand you ')
+                    result = calculate_expression(get_message_text(update))
+                    if result is not None:
+                        send_message(get_chat_id(update), result)
+                    else:
+                        send_message(get_chat_id(update), 'Sorry, I don\'t understand you :(')
+
                 update_id += 1
     except KeyboardInterrupt:
         print('\nБот зупинено')
 
 
-# print(__name__)
 if __name__ == '__main__':
     main()
-# print(__name__)
-# print('HELLO') #При подключении файла как бибилиотеки import bot, в другой .py файл проекта, этот код будет запускатся при включении того, другого файла

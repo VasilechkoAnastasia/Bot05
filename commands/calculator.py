@@ -8,3 +8,4 @@ def calculate_expression(expression):
         return str(result)
     except:
         return None
+

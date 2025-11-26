@@ -1,6 +1,7 @@
 import time
 import requests
 import random
+from commands.counter import analyse_text
 from commands.calculator import calculate_expression
 from commands.weather import get_weather
 import os
